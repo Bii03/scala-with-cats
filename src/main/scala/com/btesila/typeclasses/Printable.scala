@@ -1,6 +1,6 @@
 package com.btesila.typeclasses
 
-import com.btesila.typeclasses.model.Cat
+import com.btesila.typeclasses.model.{Box, Cat}
 
 /**
   * There are three important components to the type class pattern: the
@@ -10,8 +10,12 @@ import com.btesila.typeclasses.model.Cat
   * This trait exposes the type class itself - an interface or API that represents some functionality we
   * want to implement.
   */
-trait Printable[A] {
+trait Printable[A] { self => // using this for defining recursive types inside contramap
   def format(value: A): String
+
+  def contramap[B](func: B => A): Printable[B] = new Printable[B] {
+    override def format(value: B): String = self.format(func(value))
+  }
 }
 
 /**
@@ -23,6 +27,9 @@ object PrintableInstances {
   implicit val printableString: Printable[String] = (value: String) => s"$value: String"
 
   implicit val printableCat: Printable[Cat] = (value: Cat) => s"$value: Cat"
+
+  implicit def printableBox[A](implicit p: Printable[A]): Printable[Box[A]] =
+    p.contramap[Box[A]](_.value)
 }
 
 /**
