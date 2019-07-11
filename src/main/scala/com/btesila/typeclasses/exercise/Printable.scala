@@ -1,6 +1,6 @@
-package com.btesila.typeclasses
+package com.btesila.typeclasses.exercise
 
-import com.btesila.typeclasses.model.{Box, Cat}
+import com.btesila.typeclasses.exercise.model.{Box, Cat}
 
 /**
   * There are three important components to the type class pattern: the
@@ -13,9 +13,7 @@ import com.btesila.typeclasses.model.{Box, Cat}
 trait Printable[A] { self => // using this for defining recursive types inside contramap
   def format(value: A): String
 
-  def contramap[B](func: B => A): Printable[B] = new Printable[B] {
-    override def format(value: B): String = self.format(func(value))
-  }
+  def contramap[B](func: B => A): Printable[B] = (value: B) => self.format(func(value))
 }
 
 /**

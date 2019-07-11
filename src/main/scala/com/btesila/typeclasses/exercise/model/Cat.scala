@@ -1,4 +1,4 @@
-package com.btesila.typeclasses.model
+package com.btesila.typeclasses.exercise.model
 
 case class Cat(name: String, age: Int, colour: String)
 

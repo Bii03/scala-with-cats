@@ -15,6 +15,6 @@
   * is strictly forbidden unless prior written permission is obtained
   * from Adobe Systems Incorporated.
   * *************************************************************************/
-package com.btesila.typeclasses.model
+package com.btesila.typeclasses.lesson
 
-final case class Box[A](value: A)
+final case class Person(name: String, email: String)

@@ -17,7 +17,7 @@
   * *************************************************************************/
 package com.btesila.functors
 
-import com.btesila.typeclasses.model.Box
+import com.btesila.typeclasses.exercise.model.Box
 
 
 /**

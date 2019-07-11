@@ -17,7 +17,9 @@
   * *************************************************************************/
 package com.btesila.functors
 
-import com.btesila.typeclasses.model.Box
+import cats.Show
+import cats.functor.Contravariant
+import com.btesila.typeclasses.exercise.model.Box
 
 
 /**
@@ -35,10 +37,17 @@ object ContravariantFunctor extends App {
 
   // see Printable contramap implementation
 
-  import com.btesila.typeclasses.Printable._
-  import com.btesila.typeclasses.PrintableInstances._
+  import com.btesila.typeclasses.exercise.Printable._
+  import com.btesila.typeclasses.exercise.PrintableInstances._
 
   println(format(Box("hello world")))
+
+  import cats.functor.Contravariant
+  import cats.instances.string._
+
+  val showString = Show[String]
+
+//  val showSymbol = Contravariant[Show].contramap()
 }
 
 /**
