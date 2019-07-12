@@ -15,25 +15,30 @@
   * is strictly forbidden unless prior written permission is obtained
   * from Adobe Systems Incorporated.
   * *************************************************************************/
-package com.btesila.monoidssemigroups.lesson
+package com.btesila.monoidssemigroups.exercise
 
-trait Monoid[A] {
+object BooleanInterfaceObject {
+  implicit val booleanAnd: Monoid[Boolean] = new Monoid[Boolean] {
+    override def combine(x: Boolean, y: Boolean): Boolean = x && y
 
-  def combine(x: A, y: A): A
+    override def empty: Boolean = true
+  }
 
-  def empty: A
-}
+  implicit val booleanOr: Monoid[Boolean] = new Monoid[Boolean] {
+    override def combine(x: Boolean, y: Boolean): Boolean = x || y
 
-/**
-  * In addition to providing the combine and empty operations, monoids must
-  * formally obey several laws. For all values x, y, and z, in A, combine must be
-  * associative and empty must be an identity element
-  */
-object Laws {
-  def associativeLaw[A](x: A, y: A, z: A)(implicit m: Monoid[A]): Boolean =
-    m.combine(x, m.combine(y, z)) == m.combine(m.combine(x, y), z)
+    override def empty: Boolean = false
+  }
 
+  implicit val booleanXor: Monoid[Boolean] = new Monoid[Boolean] {
+    override def empty: Boolean = true
 
-  def identityLaw[A](x: A)(implicit m: Monoid[A]): Boolean =
-    (m.combine(x, m.empty) == x) && (m.combine(m.empty, x) == x)
+    override def combine(x: Boolean, y: Boolean): Boolean = (!x || y) && (x || !y)
+  }
+
+  implicit val booleanEither: Monoid[Boolean] = new Monoid[Boolean] {
+    override def empty: Boolean = false
+
+    override def combine(x: Boolean, y: Boolean): Boolean = (!x && y) || (x && !y)
+  }
 }

@@ -18,7 +18,6 @@
 package com.btesila.functors
 
 import cats.Show
-import cats.functor.Contravariant
 import com.btesila.typeclasses.exercise.model.Box
 
 
@@ -42,7 +41,6 @@ object ContravariantFunctor extends App {
 
   println(format(Box("hello world")))
 
-  import cats.functor.Contravariant
   import cats.instances.string._
 
   val showString = Show[String]

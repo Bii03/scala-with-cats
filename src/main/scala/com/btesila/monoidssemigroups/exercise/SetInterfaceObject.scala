@@ -17,19 +17,7 @@
   * *************************************************************************/
 package com.btesila.monoidssemigroups.exercise
 
-trait Semigroup[A] {
-  def combine(x: A, y: A): A
-}
-
-trait Monoid[A] extends Semigroup[A] {
-  def empty: A
-}
-
-object Monoid {
-  def apply[A](implicit monoid: Monoid[A]): Monoid[A] = monoid
-}
-
-object InterfaceObject {
+object SetInterfaceObject {
   implicit def union[A]: Monoid[Set[A]] = new Monoid[Set[A]] {
     override def empty: Set[A] = Set.empty[A]
 
