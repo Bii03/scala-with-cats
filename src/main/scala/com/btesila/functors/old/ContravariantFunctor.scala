@@ -15,7 +15,7 @@
   * is strictly forbidden unless prior written permission is obtained
   * from Adobe Systems Incorporated.
   * *************************************************************************/
-package com.btesila.functors
+package com.btesila.functors.old
 
 import cats.Show
 import com.btesila.typeclasses.exercise.model.Box

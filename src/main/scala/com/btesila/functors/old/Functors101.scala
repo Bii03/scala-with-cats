@@ -15,14 +15,7 @@
   * is strictly forbidden unless prior written permission is obtained
   * from Adobe Systems Incorporated.
   * *************************************************************************/
-package com.btesila.functors
-
-import scala.language.higherKinds
-import cats.Functor
-import cats.instances.list._
-import cats.instances.option._
-
-import scala.collection.immutable // for Functor
+package com.btesila.functors.old
 
 object Functors101 extends App {
 

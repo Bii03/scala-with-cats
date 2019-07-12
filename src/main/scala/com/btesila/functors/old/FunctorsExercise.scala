@@ -15,18 +15,26 @@
   * is strictly forbidden unless prior written permission is obtained
   * from Adobe Systems Incorporated.
   * *************************************************************************/
-package com.btesila.functors
+package com.btesila.functors.old
 
-sealed trait Tree[+A]
+object FunctorsExercise extends App {
 
-final case class Branch[A](left: Tree[A], right: Tree[A]) extends Tree[A]
+  import cats.Functor
 
-final case class Leaf[A](value: A) extends Tree[A]
 
-object Tree {
+   implicit val treeFunctor: Functor[Tree] = new Functor[Tree] {
+     override def map[A, B](tree: Tree[A])(func: A => B): Tree[B] = tree match {
+       case Branch(left, right) => Branch(map(left)(func), map(right)(func))
+       case Leaf(value) => Leaf(func(value))
+     }
+   }
 
-  // smart constructors
-  def branch[A](left: Tree[A], right: Tree[A]): Tree[A] = Branch(left, right)
+  import cats.syntax.functor._
 
-  def leaf[A](value: A): Tree[A] = Leaf(value)
+  // this does not compile - no functor for branch/leaf
+  // Branch(Leaf(10), Leaf(20)).map(_ * 2)
+
+  Tree.leaf(100).map(_ * 2)
+  Tree.branch(Leaf(10), Leaf(20)).map(_ * 2)
+
 }
