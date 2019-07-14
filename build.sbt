@@ -10,8 +10,9 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.typelevel" %% "cats-core" % "1.0.0-MF"
+  "org.typelevel" %% "cats-core" % "2.0.0-M1"
 )
 
 scalacOptions += "-language:higherKinds"
+scalacOptions += "-Ypartial-unification"
 

@@ -49,9 +49,9 @@ object HigherKindsAndTypeConstructors {
     * - declaring F using underscores
     * - referencing F without underscores
     */
-  def myMethod[F[_]](implicit functor: Functor[F]): Unit = {
-    val functor = cats.Functor.apply[F]
-  }
+//  def myMethod[F[_]](implicit functor: Functor[F]): Unit = {
+//    val functor = cats.Functor.apply[F]
+//  }
 
   /**
     * Analogue to:
