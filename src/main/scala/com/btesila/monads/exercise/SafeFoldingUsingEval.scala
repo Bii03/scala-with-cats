@@ -22,6 +22,18 @@ import cats.Eval
 object SafeFoldingUsingEval extends App {
 
   /**
+    * One useful property of Eval is that its map and flatMap methods are trampolined.
+    * This means we can nest calls to map and flatMap arbitrarily without
+    * consuming stack frames. We call this property “stack safety”.
+    */
+
+  /**
+    * Eval.defer, which takes an existing instance of Eval and defers its evaluation. The defer
+    * method is trampolined like map and flatMap, so we can use it as a quick way to make an
+    * existing operation stack safe.
+    */
+
+  /**
     * The naive implementation of foldRight below is not stack safe. Make it so
     * using Eval:
     */
